@@ -11,14 +11,20 @@ import ShoppingCart from "./components/ShoppingCart";
 
 function App() {
   const [products] = useState(data);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    return localStorage.getItem("cart") != null
+      ? JSON.parse(localStorage.getItem("cart"))
+      : [];
+  });
+
   console.log("Local", cart, localStorage.getItem("cart"));
 
   useEffect(() => {
-    if (cart === [] && localStorage.getItem("cart") != null) {
-      setCart([...JSON.parse(localStorage.getItem("cart"))]);
-      console.log("gotit");
-    }
+    // if (cart == [] && localStorage.getItem("cart") != null) {
+    //   setCart([...JSON.parse(localStorage.getItem("cart"))]);
+    //   console.log("gotit");
+    // }
+
     console.log("NEW CART", cart);
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
