@@ -17,17 +17,17 @@ function App() {
     setCart([...cart, item]);
   };
 
-  const removeItem = item => {
+  const removeItem = id => {
     // console.log("Remove", item);
     let itmIndx = "";
     for (let x = 0; x < cart.length; x++) {
-      if (cart[0].id === item) {
+      if (cart[x].id === id) {
         itmIndx = x;
       }
     }
-
-    // console.log(itmIndx);
-    setCart(cart.splice(itmIndx, 1));
+    console.log("REM", itmIndx, cart);
+    cart.splice(itmIndx, 1);
+    setCart([...cart]);
   };
 
   return (
