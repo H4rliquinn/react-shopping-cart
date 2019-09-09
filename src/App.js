@@ -17,10 +17,23 @@ function App() {
     setCart([...cart, item]);
   };
 
+  const removeItem = item => {
+    // console.log("Remove", item);
+    let itmIndx = "";
+    for (let x = 0; x < cart.length; x++) {
+      if (cart[0].id === item) {
+        itmIndx = x;
+      }
+    }
+
+    // console.log(itmIndx);
+    setCart(cart.splice(itmIndx, 1));
+  };
+
   return (
     <div className="App">
       <ProductContext.Provider value={{ products, addItem }}>
-        <CartContext.Provider value={cart}>
+        <CartContext.Provider value={{ cart, removeItem }}>
           <Navigation />
           {/* Routes */}
           <Route exact path="/" component={Products} />
